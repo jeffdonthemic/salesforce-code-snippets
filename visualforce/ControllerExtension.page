@@ -1,0 +1,14 @@
+<apex:page standardController="Account" extensions="myControllerExtension">
+    <apex:form >
+        <apex:PageBlock id="pb">
+            <apex:pageblockSection>
+                <apex:inputField value="{!account.name}"/>  
+                <apex:pageBlockSectionItem>
+                    {!$ObjectType.account.fields.website.label}
+                    <apex:inputField value="{!account.website}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+            <apex:commandButton value="Custom Action" action="{!customsave}"/>
+        </apex:PageBlock>
+    </apex:form>
+</apex:page>

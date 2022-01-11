@@ -1,0 +1,113 @@
+<!--
+ an alternate method might be
+ {!urlFor(case(opportunity.recordTypeId, '012300000004pYzAAI', $Page.Opportunity_edit1, '11111111', $Page.Opportunity_edit2, $Action.Opportunity.View), opportunity.id, [id = opportunity.id], true)}  
+ -->
+
+<apex:page standardController="Opportunity" extensions="CASOpportunityController" action="{!checkCategory}">
+     <apex:sectionHeader title="Opportunity" subtitle="{!opportunity.name}"/>
+     <apex:form >
+     <apex:pageBlock title="Opportunity">
+ 	
+          <apex:pageBlockButtons location="both">
+               <apex:commandButton value="Edit" action="{!edit}" />
+               <apex:commandButton value="Delete" action="{!delete}" />
+               <input type="button" class="btn" value="Clone" onclick="location.href='{!URLFOR($Action.Opportunity.Clone,Opportunity.Id)}'"/>
+               <input type="button" class="btn" value="Sharing" onclick="location.href='{!URLFOR($Action.Opportunity.Share,Opportunity.Id)}'"/>
+               <apex:commandButton value="Course Categories" action="{!goToCourseCategories}" style="margin-left:5px"/>
+          </apex:pageBlockButtons>
+          <apex:pageMessages /> 	
+      	
+          <apex:pageBlockSection title="Opportunity Information" columns="2">
+      	
+               <apex:outputField title="Opportunity Name" value="{!opportunity.Name}"/>
+               <apex:pageBlockSectionItem >
+           			<apex:outputLabel value="Opportunity Owner"/>
+           			<apex:outputPanel >
+	           			<apex:outputField value="{!opportunity.OwnerId}"/>
+	           			<apex:outputLink value="/{!opportunity.id}/a?retURL=%2F{!opportunity.id}" style="padding-left:3px">[Change]</apex:outputLink>
+           			</apex:outputPanel>
+               </apex:pageBlockSectionItem>
+           	
+               <apex:outputField title="Account Name" value="{!opportunity.AccountId}"/>
+               <apex:outputField title="Close Date" value="{!opportunity.CloseDate}"/>
+           	
+               <apex:outputField title="Lead Source" value="{!opportunity.LeadSource}"/>
+               <apex:pageBlockSectionItem >
+           			<apex:outputLabel value="Amount"/>
+           			<apex:outputText value="{!opportunity.CurrencyIsoCode} {!opportunity.Amount}"/>
+               </apex:pageBlockSectionItem>           	
+           	
+               <apex:outputField title="Opportunity Division" value="{!opportunity.Division}"/>
+               <apex:outputField title="Stage" value="{!opportunity.StageName}"/>
+           	
+               <apex:outputField title="Institution Course Code" value="{!opportunity.Institution_Course_Code__c}"/>
+               <apex:outputField title="Probability (%)" value="{!opportunity.Probability}"/>
+           	
+               <apex:outputField title="Course Category 1" value="{!opportunity.CAS_Course_Cat1__c}"/>
+               <apex:outputField title="Course Start Date" value="{!opportunity.Course_Start_Date__c}"/>
+           	
+               <apex:outputField title="Course Category 2" value="{!opportunity.CAS_Course_Cat2__c}"/>
+               <apex:outputField title="Duration" value="{!opportunity.Duration__c}"/>
+           	
+               <apex:outputField title="Course Category 3" value="{!opportunity.CAS_Course_Cat3__c}"/>
+               <apex:outputField title="Qualification" value="{!opportunity.Qualification__c}"/>
+           	
+               <apex:outputField title="Course Type" value="{!opportunity.Course_Type__c}"/>
+               <apex:outputField title="Year of Study" value="{!opportunity.Year_of_Study__c}"/>
+           	
+               <apex:outputField title="Course Structure" value="{!opportunity.Course_Structure__c}"/>
+               <apex:outputField title="Number of Students" value="{!opportunity.Number_of_Students__c}"/>
+           	
+               <apex:pageBlockSectionItem />
+               <apex:outputField title="Type" value="{!opportunity.Type}"/>
+           	
+          </apex:pageBlockSection>
+      	
+          <apex:pageBlockSection title="Website Request Information" columns="2">
+               <apex:outputField title="Course Name" value="{!opportunity.Course_Name__c}"/>
+               <apex:outputField title="Anticipated Enrollment" value="{!opportunity.Anticipated_Enrollment__c}"/>
+               <apex:outputField title="Book Title Requested" value="{!opportunity.Book_Requested__c}"/>
+               <apex:outputField title="Current Text" value="{!opportunity.Current_Text__c}"/>
+               <apex:outputField title="ISBN" value="{!opportunity.ISBN__c}"/>
+               <apex:outputField title="Author" value="{!opportunity.Author__c}"/>
+               <apex:outputField title="Book Requested Type" value="{!opportunity.Book_Requested_Type__c}"/>
+               <apex:outputField title="Delivery Instructions" value="{!opportunity.Delivery_Instructions__c}"/>
+               <apex:outputField title="Website Source" value="{!opportunity.Website_Source__c}"/>
+          </apex:pageBlockSection>
+      	
+          <apex:pageBlockSection title="Description Information" columns="2">
+               <apex:outputField title="Description" value="{!opportunity.Description}"/>
+               <apex:pageBlockSectionItem />
+        	
+               <apex:pageBlockSectionItem >
+           			<apex:outputLabel value="Created By"/>
+           			<apex:outputPanel >
+	           			<apex:outputField value="{!opportunity.CreatedByID}"/>, 
+	           			<apex:outputField value="{!opportunity.CreatedDate}" style="padding-left:5px"/>
+           			</apex:outputPanel>
+               </apex:pageBlockSectionItem>	
+               <apex:pageBlockSectionItem >
+           			<apex:outputLabel value="Last Modified By"/>
+           			<apex:outputPanel >
+	           			<apex:outputField value="{!opportunity.LastModifiedById}"/>, 
+	           			<apex:outputField value="{!opportunity.LastModifiedDate}" style="padding-left:5px"/>
+           			</apex:outputPanel>
+               </apex:pageBlockSectionItem>   
+                	
+               <apex:outputField title="Legacy ID" value="{!opportunity.Legacy_ID__c}"/>
+               <apex:outputField title="System ID" value="{!opportunity.System_ID__c}"/>
+          </apex:pageBlockSection>
+      	
+     </apex:pageBlock>
+     </apex:form>
+	
+    <apex:relatedList list="OpportunityLineItems"/>
+    <apex:relatedList list="R00NR0000000URnZMAW"/>
+    <apex:relatedList list="OpportunityContactRoles"/>
+    <apex:relatedList list="OpportunityTeamMembers"/>  
+	<apex:relatedList list="OpenActivities"/>
+	<apex:relatedList list="ActivityHistories"/>
+	<apex:relatedList list="NotesAndAttachments"/>
+	<apex:relatedList list="OpportunityHistories"/>	
+ 	
+</apex:page>

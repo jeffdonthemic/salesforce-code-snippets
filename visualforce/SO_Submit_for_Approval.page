@@ -1,0 +1,73 @@
+<apex:page standardController="Sales_Order__c" extensions="SoSubmitForApprovalController" action="{!load}">
+  <apex:sectionHeader title="Sales Order" subtitle="{!Sales_Order__c.name}"/>
+  <apex:form >
+      <apex:pageBlock >
+		<apex:pageBlockButtons >
+		    <apex:commandButton action="{!cancel}" value="Back"/>
+		    <apex:commandButton action="{!save}" value="Save" style="margin-left:25px"  rendered="{!showAddressUpdateForm}"/>
+		    <apex:commandButton action="{!cancel}" value="Cancel" rendered="{!showAddressUpdateForm}"/>
+		</apex:pageBlockButtons>
+		<apex:pageMessages />
+		
+		<apex:outputPanel rendered="{!showAddressUpdateForm}">
+			
+	          <apex:pageBlockSection title="Delivery Contact" columns="2">
+	      	
+	               <apex:outputField value="{!deliveryContact.Name}"/>
+	               <apex:inputField value="{!deliveryContact.MailingStreet}" required="true"/>
+	           	
+	               <apex:inputField value="{!deliveryContact.Email}" required="true"/>
+	               <apex:inputField value="{!deliveryContact.MailingCity}" required="true"/>
+	           	
+	               <apex:inputField value="{!deliveryContact.Phone}" required="true"/>
+	               <apex:inputField value="{!deliveryContact.MailingState}" required="true"/>
+	           	
+	               <apex:pageBlockSectionItem />
+	               <apex:inputField value="{!deliveryContact.MailingPostalCode}" required="true"/>	
+	
+	               <apex:pageBlockSectionItem />
+	               <apex:pageBlockSectionItem >
+	                    <apex:outputLabel value="Mailing Country" for="cbxDeliveryCountry"/>
+	                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+	                    <apex:selectList value="{!deliveryCountry}" id="cbxDeliveryCountry" size="1" required="true">
+	                        <apex:selectOptions value="{!countries}"/>
+	                    </apex:selectList>
+	                    </apex:outputPanel>
+	                </apex:pageBlockSectionItem>                                                  	
+	           	
+	          </apex:pageBlockSection> 		
+			
+	          <apex:pageBlockSection title="Invoice Contact" columns="2">
+	      	
+	               <apex:outputField value="{!invoiceContact.Name}"/>
+	               <apex:inputField value="{!invoiceContact.MailingStreet}" required="true"/>
+	           	
+	               <apex:inputField value="{!invoiceContact.Email}" required="true"/>
+	               <apex:inputField value="{!invoiceContact.MailingCity}" required="true"/>
+	           	
+	               <apex:inputField value="{!invoiceContact.Phone}" required="true"/>
+	               <apex:inputField value="{!invoiceContact.MailingState}" required="true"/>
+	           	
+	               <apex:pageBlockSectionItem />
+	               <apex:inputField value="{!invoiceContact.MailingPostalCode}" required="true"/>	
+	
+	               <apex:pageBlockSectionItem />
+	               <apex:pageBlockSectionItem >
+	                    <apex:outputLabel value="Mailing Country" for="cbxInvoiceCountry"/>
+	                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+	                    <apex:selectList value="{!invoiceCountry}" id="cbxInvoiceCountry" size="1" required="true">
+	                        <apex:selectOptions value="{!countries}"/>
+	                    </apex:selectList>
+	                    </apex:outputPanel>
+	                </apex:pageBlockSectionItem>                                                  	
+	           	
+	          </apex:pageBlockSection> 	
+      	
+          </apex:outputPanel>	
+		
+      </apex:pageBlock>
+  	
+  </apex:form>
+</apex:page>

@@ -1,0 +1,80 @@
+<apex:page standardController="Opportunity" extensions="CASOpportunityController">
+     <apex:sectionHeader title="Opportunity Edit" subtitle="New Opportunity"/>
+     <apex:form >
+     <apex:pageBlock title="Opportunity Edit" mode="edit">
+      	
+          <apex:pageBlockButtons location="top">
+               <apex:commandButton value="Save" action="{!save}" />
+               <apex:commandButton value="Save & New" action="{!save}" />
+               <apex:commandButton value="Cancel" action="{!cancel}" />
+          </apex:pageBlockButtons>
+          <apex:pageBlockButtons location="bottom">
+               <apex:commandButton value="Save" action="{!save}" />
+               <apex:commandButton value="Save & New" action="{!save}" />
+               <apex:commandButton value="Cancel" action="{!cancel}" />
+          </apex:pageBlockButtons>
+      	
+          <apex:pageBlockSection title="Opportunity Information" columns="2">
+               <apex:inputField value="{!opportunity.Name}" required="true"/>
+               <apex:inputField value="{!opportunity.OwnerId}" required="false"/>
+               <apex:inputField value="{!opportunity.AccountId}" required="true"/>
+               <apex:inputField value="{!opportunity.CloseDate}" required="true"/>
+               <apex:inputField value="{!opportunity.CurrencyIsoCode}" required="true"/>
+               <apex:inputField value="{!opportunity.Amount}" required="false"/>
+               <apex:inputField value="{!opportunity.LeadSource}" required="true"/>
+               <apex:inputField value="{!opportunity.StageName}" required="true"/>
+               <apex:inputField value="{!opportunity.Institution_Course_Code__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Probability}" required="false"/>
+               <apex:inputField value="{!opportunity.Course_Frequency__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Course_Start_Date__c}" required="false"/>
+			<apex:pageBlockSectionItem >
+				<apex:outputText value="Course Category 1"/>
+				<apex:selectList value="{!selectedLevel1}" id="cbxlevel1" size="1">
+					<apex:selectOptions value="{!level1items}"/>
+					<apex:actionSupport event="onchange" rerender="cbxlevel2"/>
+				</apex:selectList>
+			</apex:pageBlockSectionItem>
+               <apex:inputField value="{!opportunity.Duration__c}" required="false"/>
+			<apex:pageBlockSectionItem >
+			    <apex:outputText value="Course Category 2"/>
+			    <apex:selectList value="{!selectedLevel2}" id="cbxlevel2" size="1">
+			        <apex:selectOptions value="{!level2items}"/>
+			        <apex:actionSupport event="onchange" rerender="cbxlevel3"/>
+			    </apex:selectList>
+			</apex:pageBlockSectionItem>
+               <apex:inputField value="{!opportunity.Qualification__c}" required="false"/>
+			<apex:pageBlockSectionItem >
+			    <apex:outputText value="Course Category 3"/>
+			    <apex:selectList value="{!selectedLevel3}" id="cbxlevel3" size="1">
+			        <apex:selectOptions value="{!level3items}"/>
+			    </apex:selectList>
+			</apex:pageBlockSectionItem>
+               <apex:inputField value="{!opportunity.Year_of_Study__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Course_Type__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Number_of_Students__c}" required="true"/>
+               <apex:inputField value="{!opportunity.Type}" required="true"/>
+               <apex:inputField value="{!opportunity.Course_Structure__c}" required="false"/>
+          </apex:pageBlockSection>
+      	
+          <apex:pageBlockSection title="Lead Request Information" columns="2">
+               <apex:inputField value="{!opportunity.Course_Name__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Anticipated_Enrollment__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Book_Requested__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Current_Text__c}" required="false"/>
+               <apex:inputField value="{!opportunity.ISBN__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Author__c}" required="false"/>
+          </apex:pageBlockSection>
+      	
+          <apex:pageBlockSection title="Other Information" columns="1">
+               <apex:inputField value="{!opportunity.Book_Requested_Type__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Delivery_Instructions__c}" required="false"/>
+               <apex:inputField value="{!opportunity.Website_Source__c}" required="false"/>
+          </apex:pageBlockSection>
+      	
+          <apex:pageBlockSection title="Description Information" columns="4">
+               <apex:inputField value="{!opportunity.Description}" required="false"/>
+          </apex:pageBlockSection>
+      	
+     </apex:pageBlock>
+     </apex:form>
+</apex:page>

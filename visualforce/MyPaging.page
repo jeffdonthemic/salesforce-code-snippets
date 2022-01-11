@@ -1,0 +1,32 @@
+<apex:page controller="MyPagingController" tabStyle="Account">
+<apex:sectionHeader title="Accounts List with Paging"></apex:sectionHeader>
+<apex:form >
+<apex:pageBlock title="" id="pageBlock">
+<apex:pageBlockButtons location="top">
+<apex:commandButton value="View" action="{!ViewData}" id="theButton" rerender="pageBlock"></apex:commandButton>
+</apex:pageBlockButtons>
+<apex:pageMessages ></apex:pageMessages>
+<div align="right" style="display:{!IF(NOT(ISNULL(accounts)),'block','none')}">
+<font size="1pt">Page #: <apex:outputLabel value="{!PageNumber}"/> out of <apex:outputLabel value="{!totalPageNumber}"/>    </font>
+<apex:commandButton value="Previous" action="{!previousBtnClick}" disabled="{!previousButtonEnabled}" reRender="pageBlock"></apex:commandButton>
+<apex:commandButton value="Next" action="{!nextBtnClick}" reRender="pageBlock" disabled="{!nextButtonDisabled}" ></apex:commandButton>
+</div>
+<br/><br/>
+<apex:pageBlockTable value="{!accounts}" var="a" rendered="{!NOT(ISNULL(accounts))}" rows="{!PageSize}">
+<apex:column >
+<apex:facet name="header">Account Name</apex:facet>
+<apex:outputLink value="/{!a.Id}" target="_blank">{!a.Name}</apex:outputLink>
+</apex:column>
+<apex:column value="{!a.Phone}"></apex:column>
+<apex:column value="{!a.Fax}"></apex:column>
+</apex:pageBlockTable>
+<div align="right" style="display:{!IF(NOT(ISNULL(accounts)),'block','none')}">
+<br/>
+<font size="1pt">Page #: <apex:outputLabel value="{!PageNumber}"/> out of <apex:outputLabel value="{!totalPageNumber}"/>    </font>
+<apex:commandButton value="Previous" action="{!previousBtnClick}" disabled="{!previousButtonEnabled}" reRender="pageBlock"></apex:commandButton>
+<apex:commandButton value="Next" action="{!nextBtnClick}" reRender="pageBlock" disabled="{!nextButtonDisabled}" ></apex:commandButton>
+</div>
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

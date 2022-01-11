@@ -1,0 +1,26 @@
+<apex:page standardController="MIDAS_Course__c" extensions="midasCourseController">
+    <apex:detail relatedList="false"/>
+	
+    <apex:outputText value="{!MIDAS_Course__c.Course_Category_1__c}" rendered="false"/>
+    <apex:outputText value="{!MIDAS_Course__c.Course_Category_2__c}" rendered="false"/>
+    <apex:outputText value="{!MIDAS_Course__c.Course_Category_3__c}" rendered="false"/>
+   
+    <apex:pageBlock title="Books">
+       <apex:pageBlockButtons location="top">
+            <apex:form ><apex:commandButton value="New Book" title="New Book" action="{!newBook}" /></apex:form>
+        </apex:pageBlockButtons>   
+        <apex:pageBlockTable value="{!bookInfo}" var="b">
+            <apex:column headerValue="Book">
+                <apex:outputLink value="/{!b.Book__r.Id}">{!b.Book__r.Name}</apex:outputLink>
+            </apex:column>
+            <apex:column headerValue="Lead Author/Editor" value="{!b.Book__r.Lead_Author_Editor__c}"/>
+            <apex:column headerValue="Edition Number" value="{!b.Book__r.Edition_Number__c}"/>
+            <apex:column headerValue="ISBN #" value="{!b.Book__r.ISBN__c}"/>
+            <apex:column headerValue="Version Type" value="{!b.Book__r.Version_Type__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+   
+    <apex:relatedList list="R00NR0000000H9rYMAS" subject="{!$CurrentPage.parameters.relatedId}"/>
+    <apex:relatedList list="OpenActivities" subject="{!$CurrentPage.parameters.relatedId}"/>
+    <apex:relatedList list="ActivityHistories" subject="{!$CurrentPage.parameters.relatedId}"/>
+</apex:page>

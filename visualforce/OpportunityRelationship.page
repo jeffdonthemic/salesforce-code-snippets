@@ -1,0 +1,10 @@
+<apex:page standardController="Opportunity">
+<apex:outputText value="{!Opportunity.Name}"/>
+
+<apex:pageBlock>
+<apex:pageblockList value="{!Opportunity.OpportunityPartnersFrom}" var="s">
+<apex:column>{!s.role}</apex:column>
+<apex:column>{!s.opportunity.name} </apex:column>
+<apex:column>{!s.accountto.name} </apex:column>
+</apex:pageblockList></apex:pageBlock>
+</apex:page>

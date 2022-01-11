@@ -1,0 +1,109 @@
+<apex:page standardController="Contact" extensions="sectorSubsectorController">
+     <apex:sectionHeader title="Contact Edit" subtitle="{!contact.name}"/>
+     <apex:form >
+     <apex:pageBlock title="Contact Edit" mode="edit">
+ 
+          <apex:pageBlockButtons location="top">
+               <apex:commandButton value="Save" action="{!save}" />
+               <apex:commandButton value="Save & New" action="{!save}" />
+               <apex:commandButton value="Cancel" action="{!cancel}" />
+          </apex:pageBlockButtons>
+          <apex:pageBlockButtons location="bottom">
+               <apex:commandButton value="Save" action="{!save}" />
+               <apex:commandButton value="Save & New" action="{!save}" />
+               <apex:commandButton value="Cancel" action="{!cancel}" />
+          </apex:pageBlockButtons>
+         
+         
+          <apex:pageBlockSection title="Contact Information" columns="2">
+               <apex:inputField value="{!contact.Salutation}" required="false"/>
+               <apex:inputField value="{!contact.OwnerId}" required="false"/>
+               <apex:inputField value="{!contact.LastName}" required="true"/>
+               <apex:inputField value="{!contact.AccountId}" required="true"/>
+               <apex:inputField value="{!contact.Suffix__c}" required="false"/>
+               <apex:inputField value="{!contact.Do_Not_Email__c}" required="false"/>
+               <apex:inputField value="{!contact.Title}" required="true"/>
+               <apex:inputField value="{!contact.DoNotCall}" required="false"/>
+               <apex:inputField value="{!contact.Email}" required="false"/>
+               <apex:inputField value="{!contact.Do_Not_Fax__c}" required="false"/>
+               <apex:inputField value="{!contact.Phone}" required="true"/>
+               <apex:inputField value="{!contact.Fax}" required="false"/>
+               <apex:inputField value="{!contact.HomePhone}" required="false"/>
+               <apex:inputField value="{!contact.MobilePhone}" required="false"/>
+               <apex:inputField value="{!contact.OtherPhone}" required="false"/>
+          </apex:pageBlockSection>
+         
+          <apex:pageBlockSection title="Sector & Subsector" columns="2">
+
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Sector" for="cbxSector"/>
+                <apex:selectList value="{!sectors}" multiselect="true" id="cbxSector">
+                    <apex:selectOptions value="{!sectoritems}"/>
+                </apex:selectList>
+            </apex:pageBlockSectionItem>
+          
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Sub Sector" for="cbxSubsector"/>
+                <apex:outputPanel id="out">
+                    <apex:actionstatus id="status" startText="Fetching Sub Sectors...">
+                    <apex:facet name="stop">
+                        <apex:outputPanel >
+                            <apex:selectList value="{!subsectors}" multiselect="true" id="cbxSubsector">
+                                <apex:selectOptions value="{!subsectoritems}"/>
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:facet>
+                    </apex:actionstatus>
+                </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+           
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="" for="btnGetSubsectors"/>
+                <apex:commandButton value="Get Sub Sectors" action="{!fetchSubSectors}" rerender="out" status="status" id="btnGetSubsectors" style="margin-top:10px;"/>
+            </apex:pageBlockSectionItem>           
+       
+          </apex:pageBlockSection>         
+         
+          <apex:pageBlockSection title="Contact Information" columns="2">
+               <apex:inputField value="{!contact.Functional_Role__c}" required="false"/>
+               <apex:inputField value="{!contact.Department}" required="false"/>
+               <apex:inputField value="{!contact.Seniority__c}" required="false"/>
+               <apex:inputField value="{!contact.ReportsToId}" required="false"/>
+               <apex:inputField value="{!contact.Temperature__c}" required="false"/>
+               <apex:inputField value="{!contact.Status__c}" required="true"/>
+          </apex:pageBlockSection>
+         
+          <apex:pageBlockSection title="Address Information" columns="2">
+               <apex:inputField value="{!contact.MailingStreet}" required="false"/>
+               <apex:inputField value="{!contact.OtherStreet}" required="false"/>
+               <apex:inputField value="{!contact.MailingCity}" required="false"/>
+               <apex:inputField value="{!contact.OtherCity}" required="false"/>
+               <apex:inputField value="{!contact.MailingState}" required="false"/>
+               <apex:inputField value="{!contact.OtherState}" required="false"/>
+               <apex:inputField value="{!contact.MailingPostalCode}" required="false"/>
+               <apex:inputField value="{!contact.OtherPostalCode}" required="false"/>
+               <apex:inputField value="{!contact.MailingCountry}" required="false"/>
+               <apex:inputField value="{!contact.OtherCountry}" required="false"/>
+               <apex:inputField value="{!contact.Do_Not_Mail__c}" required="false"/>
+          </apex:pageBlockSection>
+         
+          <apex:pageBlockSection title="Other Information" columns="2">
+               <apex:inputField value="{!contact.Source_Reference__c}" required="false"/>
+               <apex:inputField value="{!contact.Birthdate}" required="false"/>
+               <apex:inputField value="{!contact.LeadSource}" required="false"/>
+               <apex:inputField value="{!contact.AssistantName}" required="false"/>
+               <apex:inputField value="{!contact.AssistantPhone}" required="false"/>
+          </apex:pageBlockSection>
+         
+          <apex:pageBlockSection title="Description Information" columns="1">
+               <apex:inputField value="{!contact.Description}" required="false"/>
+          </apex:pageBlockSection>
+         
+          <apex:pageBlockSection title="Hidden Fields" columns="2">
+               <apex:inputField value="{!contact.Legacy_ID__c}" required="false"/>
+               <apex:inputField value="{!contact.System_ID__c}" required="false"/>
+          </apex:pageBlockSection>
+         
+     </apex:pageBlock>
+     </apex:form>
+</apex:page>

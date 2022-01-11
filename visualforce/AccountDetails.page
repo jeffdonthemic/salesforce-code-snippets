@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="myControllerExtension">      
+    <apex:detail relatedList="true" >
+    <!--apex:relatedList list="Contacts" subject="{!account}"></apex:relatedList>
+    <apex:relatedList list="ActivityHistories" subject="{!account}"></apex:relatedList>
+    <apex:relatedList list="NotesAndAttachments" subject="{!account}"></apex:relatedList -->
+
+    <apex:pageBlock title="Related Firms"  helpTitle="Related Firms Help" helpUrl="">
+        <apex:pageBlockButtons location="top">
+           <apex:form ><apex:commandButton action="{!createNewRelationship}" value="New" /></apex:form>
+        </apex:pageBlockButtons>
+        <apex:variable var="baseId" value="{!Url}" />       
+        
+        <apex:pageBlockTable value="{!RelatedFirms}" var="item">
+            <apex:column headerValue="Action"> <apex:outputLink value="/{!item.id}/e—retURL=%2F{!baseId}" id="editLink"><b>Edit</b></apex:outputLink> | <apex:outputLink value="/setup/own/deleteredirect.jsp–delID={!item.id}&retURL=%2F{!baseId}" id="delLink"><b>Del</b></apex:outputLink></apex:column>
+            <apex:column headerValue="Related Firm"> <apex:outputLink value="/{!item.id}">{!item.name}</apex:outputLink> </apex:column> 
+            <apex:column headerValue="Relationship Type">   </apex:column>
+        </apex:pageBlockTable> 
+
+    </apex:pageBlock>
+    </apex:detail>
+</apex:page>

@@ -1,0 +1,5 @@
+<apex:pageBlock title="Contacts">
+    <apex:dataTable value="{!account.Contacts}" var="contact" cellPadding="4" border="1">
+        <apex:column >{!contact.Name}</apex:column>
+    </apex:dataTable>
+</apex:pageBlock>
