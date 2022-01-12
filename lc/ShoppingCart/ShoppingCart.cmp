@@ -1,0 +1,56 @@
+<aura:component>
+    <aura:attribute name="items" type="aotpjd.Product__c[]"/>
+    <aura:attribute name="total" type="Integer" default="0"/>
+    ï¿¼<aura:handler event="aotpjd:AddToCart" action="{!c.handleAddToCartEvent}"/>
+
+    <div class="col-lg-9 col-md-9 col-sm-12">
+        <div class="col-lg-12 col-sm-12">
+            <span class="title">COMPANY STORE BASKET</span>
+        </div>
+        <aura:renderIf isTrue="{!v.items.length > 0}">
+        <div class="col-lg-12 col-sm-12 hero-feature">
+            <table class="table table-bordered tbl-cart">
+                <thead>
+                    <tr>
+                        <td class="hidden-xs">Image</td>
+                        <td>Product Name</td>
+                        <td>Size</td>
+                        <td>Color</td>
+                        <td>Points</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.items}" var="item">
+                    <tr>
+                        <td class="hidden-xs"><img src="{!item.aotpjd__photo__c}" alt="{!item.name}" title="" width="47" height="47" /></td>
+                        <td>{!item.name}
+                        </td>
+                        <td>
+                            <select>
+                                <aura:iteration items="{!item.aotpjd__Product_Sizes__r}" var="size">
+                                    <option>{!size.name}</option>
+                                </aura:iteration>
+                            </select>
+                        </td>
+                        <td>{!item.aotpjd__color__c}</td>
+                        <td>{!item.aotpjd__points__c}</td>
+                    </tr>
+                    </aura:iteration>
+                    <tr>
+                        <td colspan="3" align="right">Total Points</td>
+                        <td class="total" colspan="2"><b>{!v.total}</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Confirm your order</a>
+
+        </div>
+        </aura:renderIf>
+        <aura:renderIf isTrue="{!v.items.length == 0}">
+            <div class="col-lg-12 col-sm-12 hero-feature">
+                <p>Your basket is empty. So sad. Use your points to redeem something #awesome!</p>
+            </div>
+        </aura:renderIf>
+    </div>
+</aura:component>

@@ -1,0 +1,10 @@
+<apex:component controller="ContactListViewController">
+  <apex:attribute name="listViewName" type="String" required="true" 
+    description="The name of the listview." assignTo="{!listName}"/>	
+
+  <apex:enhancedList height="400" rowsPerPage="25" id="ContactList"
+    listId="{!listId}" rendered="{!listId != null}" />
+
+  <apex:outputText rendered="{!listId == null}" value="Could not find requewed ListView: '{!listName}'. Please contact your administrator."/>
+
+</apex:component>
